@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>YouTube SEO Tool</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+body{
+  font-family: Arial;
+  background: linear-gradient(135deg,#111,#444);
+  color:white;
+  text-align:center;
+  padding:20px;
+}
+
+.container{
+  max-width:800px;
+  margin:auto;
+  background:white;
+  color:black;
+  padding:20px;
+  border-radius:15px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.4);
+}
+
+input{
+  width:80%;
+  padding:12px;
+  border-radius:8px;
+  border:1px solid #ccc;
+  margin:10px;
+}
+
+button{
+  padding:10px 15px;
+  margin:5px;
+  border:none;
+  border-radius:8px;
+  background:#ff0000;
+  color:white;
+  cursor:pointer;
+}
+
+button:hover{
+  background:#cc0000;
+}
+
+.box{
+  background:#f5f5f5;
+  padding:10px;
+  margin:10px;
+  border-radius:8px;
+  text-align:left;
+}
+
+.copyAll{
+  background:#007bff;
+}
+.copyAll:hover{
+  background:#0056b3;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🔥 YouTube SEO Tool</h1>
+
+<div class="container">
+
+  <input type="text" id="keyword" placeholder="Enter Your Keyword">
+
+  <br>
+
+  <button onclick="generate()">Generate</button>
+
+  <div class="box">
+    <h3>Title:</h3>
+    <p id="title"></p>
+  </div>
+
+  <div class="box">
+    <h3>Description:</h3>
+    <p id="description"></p>
+  </div>
+
+  <div class="box">
+    <h3>Tags:</h3>
+    <p id="tags"></p>
+  </div>
+
+  <div class="box">
+    <h3>Hashtags:</h3>
+    <p id="hashtags"></p>
+  </div>
+
+</div>
+
+<script>
+function generate(){
+
+  let keyword = document.getElementById("keyword").value.trim();
+
+  if(keyword==""){
+    alert("Please enter a keyword!");
+    return;
+  }
+
+  let year = new Date().getFullYear();
+  let lowerKeyword = keyword.toLowerCase();
+
+  let category = "general";
+
+  // Category Detection
+  if(lowerKeyword.includes("game") || lowerKeyword.includes("gaming")){
+    category = "gaming";
+  }
+  else if(lowerKeyword.includes("cartoon") || lowerKeyword.includes("kids") || lowerKeyword.includes("motu")){
+    category = "kids";
+  }
+  else if(lowerKeyword.includes("tech") || lowerKeyword.includes("mobile") || lowerKeyword.includes("phone")){
+    category = "tech";
+  }
+  else if(lowerKeyword.includes("music") || lowerKeyword.includes("song")){
+    category = "music";
+  }
+
+  // Title Based on Category
+  let title = "";
+
+  if(category=="gaming"){
+    title = "🎮 " + keyword + " Gameplay " + year + " | Epic Moments";
+  }
+  else if(category=="kids"){
+    title = "🎬 Fun " + keyword + " Video " + year;
+  }
+  else if(category=="tech"){
+    title = "📱 " + keyword + " Review & Guide " + year;
+  }
+  else if(category=="music"){
+    title = "🎵 " + keyword + " Song " + year + " | Trending";
+  }
+  else{
+    title = "🔥 " + keyword + " " + year + " | Must Watch";
+  }
+
+  // Description
+  let description =
+  "This video is about " + keyword +
+  ". Category: " + category +
+  ". Stay tuned for more trending content in " + year + ".";
+
+  // Tags
+  let tags =
+  keyword + ", " + category + ", " +
+  year + ", youtube, trending, seo";
+
+  if(tags.length > 500){
+    tags = tags.substring(0,500);
+  }
+
+  // Hashtags
+  let hashtags =
+  "#" + keyword.replace(/ /g,"") +
+  " #" + category +
+  " #trending #" + year;
+
+  // Output
+  document.getElementById("title").innerText = title;
+  document.getElementById("description").innerText = description;
+  document.getElementById("tags").innerText = tags;
+  document.getElementById("hashtags").innerText = hashtags;
+  
+}
+</script>
+
+<div>
+  <h3>Title:</h3>
+  <p id="title"></p>
+  <button onclick="copyText('title')">📋 Copy Title</button>
+</div>
+
+<div>
+  <h3>Description:</h3>
+  <p id="description"></p>
+  <button onclick="copyText('description')">📋 Copy Description</button>
+</div>
+
+<div>
+  <h3>Tags:</h3>
+  <p id="tags"></p>
+  <button onclick="copyText('tags')">📋 Copy Tags</button>
+</div>
+
+<div>
+  <h3>Hashtags:</h3>
+  <p id="hashtags"></p>
+  <button onclick="copyText('hashtags')">📋 Copy Hashtags</button>
+</div> 
+
+</body>
+</html>
